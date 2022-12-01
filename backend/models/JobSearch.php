@@ -18,7 +18,7 @@ class JobSearch extends Job
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['title', 'Company', 'location', 'Category', 'tags', 'Description', 'email', 'closing_date'], 'safe'],
+            [['title', 'company_id', 'location', 'Category', 'tags', 'Description', 'email', 'closing_date'], 'safe'],
         ];
     }
 
@@ -64,10 +64,10 @@ class JobSearch extends Job
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'Company', $this->Company])
+            ->andFilterWhere(['like', 'company_id', $this->company_id])
             ->andFilterWhere(['like', 'location', $this->location])
             ->andFilterWhere(['like', 'tags', $this->tags])
-            ->andFilterWhere(['like', 'Description', $this->Description])
+            ->andFilterWhere(['like', 'Description', $this->description])
             ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;

@@ -14,24 +14,16 @@ class AdminController extends Controller
      */
     public function behaviors()
     {
-        $behaviors['verbs'] = [
-            'class' => VerbFilter::class,
-            'actions' => [
-                'delete' => ['POST'],
-            ],
-        ];
-        $behaviors['access'] = [
-            'class' => AccessControl::class,
-            'only' => ['index', 'create', 'update', 'delete', 'view'],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
-
         ];
-
-        return $behaviors;
     }
 }

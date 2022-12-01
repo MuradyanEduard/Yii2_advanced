@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221130_082707_jobs
+ * Class m221201_081511_jobs
  */
-class m221130_082707_jobs extends Migration
+class m221201_081511_jobs extends Migration
 {
     /**
      * {@inheritdoc}
@@ -15,15 +15,22 @@ class m221130_082707_jobs extends Migration
         $this->createTable('jobs', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
-            'Company' => $this->string(),
+            'company_id' => $this->integer(),
             'location' => $this->string(),
             'categories_id' => $this->integer(),
             'tags' => $this->string(),
-            'Description' => $this->string(),
+            'description' => $this->text(),
             'email' => $this->string(),
             'closing_date' => $this->date(),
             'user_id' => $this->integer(),
+            'updated_at' => $this->timestamp(),
         ]);
+
+        $this->addColumn(
+            '{{%jobs}}',
+            'created_at',
+            $this->timestamp()->null()->defaultExpression('CURRENT_TIMESTAMP')
+        );
 
         // creates index for column `user_id`
         $this->createIndex(
@@ -68,18 +75,4 @@ class m221130_082707_jobs extends Migration
         $this->dropTable('jobs');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m221130_082707_jobs cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

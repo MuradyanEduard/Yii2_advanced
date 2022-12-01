@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Category $model */
+/** @var frontend\models\JobApplication $model */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Job Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="category-view">
+<div class="job-application-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
+            'job_id',
+            'user_id',
+            'status',
+            'date',
         ],
     ]) ?>
 

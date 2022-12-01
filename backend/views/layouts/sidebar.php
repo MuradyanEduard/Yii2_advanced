@@ -58,12 +58,12 @@ use yii\helpers\Url;
             ]);
             ?>
 
-            <!--            --><?php //echo \hail812\adminlte\widgets\Menu::widget([
-            //                'items' => [
-            //                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-            //                ]
-            //            ]);
-            //            ?>
+<!--                        --><?php //echo \hail812\adminlte\widgets\Menu::widget([
+//                            'items' => [
+//                                ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+//                            ]
+//                        ]);
+//                        ?>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

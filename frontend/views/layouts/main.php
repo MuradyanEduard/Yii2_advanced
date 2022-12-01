@@ -48,12 +48,22 @@ use yii\bootstrap5\NavBar;
                         </div>
                         <div class="collapse navbar-collapse" id="main-navbar">
                             <ul class="navbar-nav mr-auto w-100 justify-content-end">
-                                <li class="nav-item">
-                                    <?= Html::a('Home', ['site/index'], ['class' => 'nav-link']) ?>
-                                </li>
-                                <li class="nav-item">
-                                    <?= Html::a('Post a Job', ['job/create'], ['class' => 'nav-link']) ?>
-                                </li>
+                                <?php if (\common\models\User::EMPLOYER_ROLE == Yii::$app->user->identity->role): ?>
+                                    <li class="nav-item">
+                                        <?= Html::a('Home', '/home', ['class' => 'nav-link']) ?>
+                                    </li>
+                                    <li class="nav-item">
+                                        <?= Html::a('Manage Application', '/job/review', ['class' => 'nav-link']) ?>
+                                    </li>
+                                    <li class="nav-item">
+                                        <?= Html::a('Post a Job', '/job/create', ['class' => 'nav-link']) ?>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (\common\models\User::CANDIDATE_ROLE == Yii::$app->user->identity->role): ?>
+                                    <li class="nav-item">
+                                        <?= Html::a('Find Job', '/job/find', ['class' => 'nav-link']) ?>
+                                    </li>
+                                <?php endif ?>
                                 <li class="button-group" style="margin:auto 0">
                                     <?= Html::beginForm('/logout'); ?>
                                     <?= Html::submitButton(

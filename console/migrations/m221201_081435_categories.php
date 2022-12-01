@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221130_100648_categories
+ * Class m221201_081435_categories
  */
-class m221129_100648_categories extends Migration
+class m221201_081435_categories extends Migration
 {
     /**
      * {@inheritdoc}
@@ -24,22 +24,5 @@ class m221129_100648_categories extends Migration
     public function safeDown()
     {
         $this->dropTable('categories');
-
-        return false;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m221130_100648_categories cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

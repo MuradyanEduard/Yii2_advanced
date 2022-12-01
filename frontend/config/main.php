@@ -44,9 +44,13 @@ return [
             'rules' => [
                 '/' => 'site/login',
                 '/signup' => 'site/signup',
+                '/logout' => 'site/logout',
                 '/home' => 'site/index',
+                '/job/find' => 'job/index',
                 '/job/create' => 'job/create',
-                '/logout' => 'site/logout'
+                '/job/review' => 'job-application/index',
+                '/job/review/create' => 'job-application/create',
+                '/job/review/update' => 'job-application/update',
             ],
         ],
 

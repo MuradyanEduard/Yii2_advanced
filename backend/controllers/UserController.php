@@ -62,7 +62,7 @@ class UserController extends AdminController
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->redirect('/UserList');
+            return $this->redirect('/user');
         }
 
         return $this->render('create', [

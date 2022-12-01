@@ -2,17 +2,19 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Job;
-use backend\models\JobSearch;
+use common\models\User;
+use frontend\models\JobApplication;
+use backend\models\JobAplicationSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * JobController implements the CRUD actions for Job model.
+ * JobAplicationController implements the CRUD actions for JobApplication model.
  */
-class JobController extends Controller
+class JobApplicationController extends Controller
 {
     /**
      * @inheritDoc
@@ -36,14 +38,14 @@ class JobController extends Controller
     }
 
     /**
-     * Lists all Job models.
+     * Lists all JobApplication models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new JobSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $searchModel = new JobAplicationSearch();
+        $dataProvider = $searchModel->searchByUserId($this->request->queryParams,\Yii::$app->user->identity->id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -52,7 +54,7 @@ class JobController extends Controller
     }
 
     /**
-     * Displays a single Job model.
+     * Displays a single JobApplication model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,54 +67,51 @@ class JobController extends Controller
     }
 
     /**
-     * Creates a new Job model.
+     * Creates a new JobApplication model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Job();
+        $model = new JobApplication();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect('/home');
-            }
-        } else {
-            $model->loadDefaultValues();
+            $model->user_id = $this->request->post()['user_id'];
+            $model->job_id = $this->request->post()['job_id'];
+            $model->status = 0;
+            $model->validate();
+            $model->save();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->redirect('/home');
     }
 
     /**
-     * Updates an existing Job model.
+     * Updates an existing JobApplication model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-//    public function actionUpdate($id)
-//    {
-//        $model = $this->findModel($id);
-//
-//        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('update', [
-//            'model' => $model,
-//        ]);
-//    }
+    public function actionUpdate()
+    {
+        if ($this->request->isPost) {
+            $model = $this->findModel($this->request->post()['id']);
+            $model->status = $this->request->post()['status'];
+            $model->validate();
+            $model->save();
+        }
 
-    /**
-     * Deletes an existing Job model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+        return $this->redirect('/home');
+    }
+
+//    /**
+//     * Deletes an existing JobApplication model.
+//     * If deletion is successful, the browser will be redirected to the 'index' page.
+//     * @param int $id ID
+//     * @return \yii\web\Response
+//     * @throws NotFoundHttpException if the model cannot be found
+//     */
 //    public function actionDelete($id)
 //    {
 //        $this->findModel($id)->delete();
@@ -121,15 +120,15 @@ class JobController extends Controller
 //    }
 
     /**
-     * Finds the Job model based on its primary key value.
+     * Finds the JobApplication model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Job the loaded model
+     * @return JobApplication the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Job::findOne(['id' => $id])) !== null) {
+        if (($model = JobApplication::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

@@ -40,9 +40,6 @@ class Job extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::class,
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new Expression('NOW()'),
             ],
         ];
     }
@@ -53,7 +50,7 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categories_id', 'user_id','company_id'], 'integer'],
+            [['categories_id', 'user_id', 'company_id'], 'integer'],
             [['closing_date'], 'safe'],
             [['title', 'location', 'tags', 'description', 'email'], 'string', 'max' => 255],
             [['categories_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categories_id' => 'id']],
