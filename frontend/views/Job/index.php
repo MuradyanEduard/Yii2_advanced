@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 /** @var yii\web\View $this */
-/** @var frontend\models\JobSearch $searchModel */
+/** @var backend\models\JobSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Jobs';

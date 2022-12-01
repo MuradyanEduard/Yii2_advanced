@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Company</label>
-                                <?= $form->field($model, 'Company')->textInput(['maxlength' => true,
+                                <?= $form->field($model, 'company_id')->textInput(['maxlength' => true,
                                     'placeholder' => 'Write company name','class' => 'form-control'])->label(false) ?>
                             </div>
                             <div class="form-group">
@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
                             </div>
                             <div class="form-group">
                                 <?= $form->field($model, 'categories_id')->dropDownList(
-                                    ArrayHelper::map(\backend\models\Category::find()->asArray()->all(), 'id', 'name')
+                                    ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'id', 'name')
                                 ) ?>
                             </div>
                             <div class="form-group">
@@ -49,7 +49,7 @@ use yii\widgets\ActiveForm;
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Description</label>
-                                <?= $form->field($model, 'Description')->textarea(['maxlength' => true,
+                                <?= $form->field($model, 'description')->textarea(['maxlength' => true,
                                     'placeholder' => '','class' => 'form-control','rows' => '6'])->label(false) ?>
                             </div>
                             <div class="form-group">

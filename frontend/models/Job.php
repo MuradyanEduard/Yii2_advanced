@@ -2,9 +2,11 @@
 
 namespace frontend\models;
 
-use backend\models\Category;
+use common\models\Category;
 use common\models\User;
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "jobs".
@@ -33,15 +35,27 @@ class Job extends \yii\db\ActiveRecord
         return 'jobs';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['categories_id', 'user_id'], 'integer'],
+            [['categories_id', 'user_id','company_id'], 'integer'],
             [['closing_date'], 'safe'],
-            [['title', 'Company', 'location', 'tags', 'Description', 'email'], 'string', 'max' => 255],
+            [['title', 'location', 'tags', 'description', 'email'], 'string', 'max' => 255],
             [['categories_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['categories_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -55,11 +69,11 @@ class Job extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'Company' => 'Company',
+            'company_id' => 'Company',
             'location' => 'Location',
             'categories_id' => 'Categories ID',
             'tags' => 'Tags',
-            'Description' => 'Description',
+            'description' => 'Description',
             'email' => 'Email',
             'closing_date' => 'Closing Date',
             'user_id' => 'User ID',

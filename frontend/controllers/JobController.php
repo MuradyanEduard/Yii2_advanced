@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Job;
-use frontend\models\JobSearch;
+use backend\models\JobSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

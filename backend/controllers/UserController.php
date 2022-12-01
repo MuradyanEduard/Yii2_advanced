@@ -3,43 +3,24 @@
 namespace backend\controllers;
 
 use common\models\User;
-use common\models\UserSearch;
+use backend\models\UserSearch ;
 use frontend\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends AdminController
 {
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-        $behaviors['verbs'] = [
-            'class' => VerbFilter::class,
-            'actions' => [
-                'delete' => ['POST'],
-            ],
-        ];
-        $behaviors['access'] = [
-            'class' => AccessControl::class,
-            'only' => ['index', 'create', 'update', 'delete', 'view'],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
-                ],
-            ],
-
-        ];
-
-        return $behaviors;
+        return parent::behaviors();
     }
 
     /**

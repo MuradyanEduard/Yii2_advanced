@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m221129_073915_backand_users
+ * Class m221201_081324_backend_users
  */
-class m221129_073915_backand_users extends Migration
+class m221201_081324_backend_users extends Migration
 {
     /**
      * {@inheritdoc}
@@ -29,19 +29,4 @@ class m221129_073915_backand_users extends Migration
     {
         $this->dropTable('{{%backend_users}}');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m221129_073915_backand_users cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

@@ -1,8 +1,11 @@
 <?php
 
-use \yii\db\Migration;
+use yii\db\Migration;
 
-class m190124_110200_add_verification_token_column_to_user_table extends Migration
+/**
+ * Class m221201_081247_add_varification_token_column
+ */
+class m221201_081247_add_varification_token_column extends Migration
 {
     public function up()
     {

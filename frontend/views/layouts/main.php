@@ -55,7 +55,7 @@ use yii\bootstrap5\NavBar;
                                     <?= Html::a('Post a Job', ['job/create'], ['class' => 'nav-link']) ?>
                                 </li>
                                 <li class="button-group" style="margin:auto 0">
-                                    <?= Html::beginForm(['/auth/logout']); ?>
+                                    <?= Html::beginForm('/logout'); ?>
                                     <?= Html::submitButton(
                                         'Logout (' . Yii::$app->user->identity->username . ')',
                                         ['class' => 'btn btn-common log-btn']); ?>
