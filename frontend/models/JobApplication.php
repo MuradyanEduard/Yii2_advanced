@@ -23,6 +23,7 @@ class JobApplication extends \yii\db\ActiveRecord
     const STATUS_APPROVED = 1;
     const STATUS_REJECTED = 2;
 
+
     /**
      * {@inheritdoc}
      */
@@ -77,4 +78,6 @@ class JobApplication extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
+
 }

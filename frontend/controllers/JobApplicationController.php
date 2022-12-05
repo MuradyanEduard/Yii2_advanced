@@ -2,14 +2,13 @@
 
 namespace frontend\controllers;
 
+use backend\models\JobSearch;
 use common\models\User;
 use frontend\models\JobApplication;
-use backend\models\JobAplicationSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * JobAplicationController implements the CRUD actions for JobApplication model.
@@ -44,8 +43,9 @@ class JobApplicationController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new JobAplicationSearch();
-        $dataProvider = $searchModel->searchByUserId($this->request->queryParams,\Yii::$app->user->identity->id);
+
+        $searchModel = new JobSearch();
+        $dataProvider = $searchModel->searchByUserId($this->request->queryParams, \Yii::$app->user->identity->id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

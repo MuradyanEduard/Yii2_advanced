@@ -20,7 +20,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%categories}}';
+        return 'categories';
     }
 
     /**
@@ -49,7 +49,7 @@ class Category extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getJob()
+    public function getJobs()
     {
         return $this->hasMany(Job::class, ['categories_id' => 'id']);
     }

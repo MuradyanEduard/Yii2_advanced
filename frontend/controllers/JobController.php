@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use frontend\models\Job;
 use backend\models\JobSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -48,6 +50,15 @@ class JobController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionHome()
+    {
+        $model = User::find()->where(['role' => User::CANDIDATE_ROLE])->all();
+
+        return $this->render('home', [
+            'model' => $model,
         ]);
     }
 
@@ -136,3 +147,4 @@ class JobController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
+

@@ -45,7 +45,7 @@ return [
                 '/' => 'site/login',
                 '/signup' => 'site/signup',
                 '/logout' => 'site/logout',
-                '/home' => 'site/index',
+                '/home' => 'job/home',
                 '/job/find' => 'job/index',
                 '/job/create' => 'job/create',
                 '/job/review' => 'job-application/index',
